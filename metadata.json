@@ -4,7 +4,9 @@
   "author": "Pat Riehecky",
   "summary": "Manage authconfig active profile",
   "license": "Apache-2.0",
-  "source": "",
+  "source": "https://github.com/jcpunk/puppet-authselect",
+  "project_page": "https://github.com/jcpunk/puppet-authselect",
+  "issues_url": "https://github.com/jcpunk/puppet-authselect/issues",
   "dependencies": [
 
   ],
@@ -16,27 +18,17 @@
       ]
     },
     {
-      "operatingsystem": "OracleLinux",
-      "operatingsystemrelease": [
-        "7"
-      ]
-    },
-    {
       "operatingsystem": "RedHat",
       "operatingsystemrelease": [
-        "8", "9"
+        "7",
+        "8",
+        "9"
       ]
     },
     {
       "operatingsystem": "Scientific",
       "operatingsystemrelease": [
         "7"
-      ]
-    },
-    {
-      "operatingsystem": "Fedora",
-      "operatingsystemrelease": [
-        "29"
       ]
     }
   ],

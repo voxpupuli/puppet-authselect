@@ -1,0 +1,4 @@
+---
+authselect::package_manage: false
+authselect::profile_manage: false
+...

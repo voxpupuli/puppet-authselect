@@ -1,1 +1,10 @@
---- {}
+---
+authselect::package_manage: true
+authselect::package_ensure: present
+authselect::package_names:
+  - authselect
+
+authselect::profile_manage: true
+authselect::profile: minimal
+authselect::profile_options: []
+...
