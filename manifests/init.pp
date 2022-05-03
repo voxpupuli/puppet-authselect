@@ -41,7 +41,7 @@ class authselect (
       $requested_features = sort($profile_options)
       $requested_features_string = join($requested_features, ' ')
 
-      if $current_features != requested_features {
+      if join($current_features, ' ') != $requested_features_string {
         exec { "authselect set profile=${profile} features=${requested_features}":
           path    => ['/usr/bin', '/usr/sbin',],
           command => "authselect select ${profile} ${requested_features_string} --force",
