@@ -10,7 +10,7 @@ describe :authselect_profile, type: :fact do
   before :each do
     # perform any action that should be run before every test
     Facter.clear
-    allow(Facter).to receive(:value).with(:kernel).and_return('Linux')
+    allow(Facter.fact(:kernel)).to receive(:value).and_return('Linux')
   end
 
   let(:profile) do
