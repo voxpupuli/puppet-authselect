@@ -15,6 +15,8 @@ Facter.add(:authselect_profile_features) do
         if retval == 'None'
           retval = []
         end
+      rescue
+        nil
       end
     end
     retval

@@ -10,7 +10,7 @@ describe 'authselect' do
       context 'when using defaults' do
         it { is_expected.to compile }
 
-        if os_facts[:os]['family'] == 'RedHat' && os_facts[:os]['release']['major'] > "7"
+        if os_facts[:os]['family'] == 'RedHat' && os_facts[:os]['release']['major'] > '7'
           it { is_expected.to have_package_resource_count(1) }
           it { is_expected.to have_exec_resource_count(1) }
           it { is_expected.to contain_package('authselect').with_ensure('present') }
@@ -97,8 +97,6 @@ describe 'authselect' do
         # it { pp catalogue.resources }
         it { is_expected.to contain_exec('authselect set profile=testing features=[a, b]') }
       end
-
-
     end
   end
 end
