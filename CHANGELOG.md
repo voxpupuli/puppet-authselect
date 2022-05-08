@@ -2,12 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 0.1.3
+
+**Bug Fixes**
+* Fix #2, better test coverage
+
 ## Release 0.1.2
 
+**Bug Fixes**
 * Fix #1, module not idempotent
 
 ## Release 0.1.1
 
+**Bug Fixes**
 * Fix typo in doc
 
 ## Release 0.1.0

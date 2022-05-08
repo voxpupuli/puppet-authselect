@@ -1,6 +1,6 @@
 {
   "name": "jcpunk-authselect",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "author": "Pat Riehecky",
   "summary": "Manage authconfig active profile",
   "license": "Apache-2.0",
