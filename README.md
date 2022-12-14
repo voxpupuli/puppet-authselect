@@ -8,13 +8,14 @@ deploy that package rather than build them ad-hoc.
 
 ## Table of Contents
 
-1. [Description](#description)
-1. [Setup - The basics of getting started with authselect](#setup)
-    * [What authselect affects](#what-authselect-affects)
-    * [Setup requirements](#setup-requirements)
-1. [Usage - Configuration options and additional functionality](#usage)
-1. [Limitations - OS compatibility, etc.](#limitations)
-1. [Development - Guide for contributing to the module](#development)
+- [authselect](#authselect)
+  - [Table of Contents](#table-of-contents)
+  - [Description](#description)
+  - [Setup](#setup)
+    - [What authselect affects](#what-authselect-affects)
+    - [Setup Requirements](#setup-requirements)
+  - [Usage](#usage)
+  - [Development](#development)
 
 ## Description
 
@@ -54,10 +55,6 @@ authselect::profile_options:
 ```
 
 This class also provides two facts: `authselect_profile` and `authselect_profile_features`.
-
-## Limitations
-
-This class does not have methods for deploying or generating custom profiles.
 
 ## Development
 

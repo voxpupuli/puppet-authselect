@@ -7,6 +7,13 @@
 ### Classes
 
 * [`authselect`](#authselect): Manage authselect's active profile
+* [`authselect::config`](#authselectconfig): Configure authselect
+* [`authselect::package`](#authselectpackage): Manage the authselect package(s)
+
+### Defined types
+
+* [`authselect::custom_profile`](#authselectcustom_profile): Manage a custom authselect profile
+* [`authselect::custom_profile_content`](#authselectcustom_profile_content): Manage file contents in a custom authselect profile
 
 ## Classes
 
@@ -24,6 +31,7 @@ The following parameters are available in the `authselect` class:
 * [`profile_manage`](#profile_manage)
 * [`profile`](#profile)
 * [`profile_options`](#profile_options)
+* [`custom_profiles`](#custom_profiles)
 
 ##### <a name="package_manage"></a>`package_manage`
 
@@ -61,4 +69,133 @@ Data type: `Array[String, 0]`
 
 What options should we pass to authselect
 ie, what features should be enabled/disabled?
+
+##### <a name="custom_profiles"></a>`custom_profiles`
+
+Data type: `Hash`
+
+Custom profiles to manage
+
+### <a name="authselectconfig"></a>`authselect::config`
+
+Configure authselect
+
+#### Examples
+
+##### 
+
+```puppet
+include authselect::config
+```
+
+### <a name="authselectpackage"></a>`authselect::package`
+
+Manage the authselect package(s)
+
+#### Examples
+
+##### 
+
+```puppet
+include authselect::package
+```
+
+## Defined types
+
+### <a name="authselectcustom_profile"></a>`authselect::custom_profile`
+
+Manage a custom authselect profile
+
+#### Examples
+
+##### 
+
+```puppet
+authselect::custom_profile { 'namevar': }
+```
+
+#### Parameters
+
+The following parameters are available in the `authselect::custom_profile` defined type:
+
+* [`contents`](#contents)
+
+##### <a name="contents"></a>`contents`
+
+Data type: `Hash`
+
+Custom profile contents
+
+Default value: `{}`
+
+### <a name="authselectcustom_profile_content"></a>`authselect::custom_profile_content`
+
+Manage file contents in a custom authselect profile
+
+#### Examples
+
+##### 
+
+```puppet
+authselect::custom_profile_content { 'custom/myprofile/': }
+```
+
+#### Parameters
+
+The following parameters are available in the `authselect::custom_profile_content` defined type:
+
+* [`content`](#content)
+* [`path`](#path)
+* [`ensure`](#ensure)
+* [`owner`](#owner)
+* [`group`](#group)
+* [`mode`](#mode)
+
+##### <a name="content"></a>`content`
+
+Data type: `String`
+
+The file resource `content` attribute
+
+##### <a name="path"></a>`path`
+
+Data type: `Pattern[
+    /^\/etc\/authselect\/custom\/[^\/]+\/[^\/]+$/
+  ]`
+
+The full path to the managed file
+
+Default value: `"/etc/authselect/custom/${name}"`
+
+##### <a name="ensure"></a>`ensure`
+
+Data type: `Stdlib::Ensure::File`
+
+The file resource `ensure` attribute
+
+Default value: `'file'`
+
+##### <a name="owner"></a>`owner`
+
+Data type: `String[1]`
+
+The file resource `owner` attribute
+
+Default value: `'root'`
+
+##### <a name="group"></a>`group`
+
+Data type: `String[1]`
+
+The file resource `group` attribute
+
+Default value: `'root'`
+
+##### <a name="mode"></a>`mode`
+
+Data type: `Stdlib::Filemode`
+
+The file resource `mode` attribute
+
+Default value: `'0644'`
 

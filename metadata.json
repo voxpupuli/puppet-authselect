@@ -14,21 +14,36 @@
     {
       "operatingsystem": "CentOS",
       "operatingsystemrelease": [
-        "7"
-      ]
-    },
-    {
-      "operatingsystem": "RedHat",
-      "operatingsystemrelease": [
-        "7",
         "8",
         "9"
       ]
     },
     {
-      "operatingsystem": "Scientific",
+      "operatingsystem": "RedHat",
       "operatingsystemrelease": [
-        "7"
+        "8",
+        "9"
+      ]
+    },
+    {
+      "operatingsystem": "OracleLinux",
+      "operatingsystemrelease": [
+        "8",
+        "9"
+      ]
+    },
+    {
+      "operatingsystem": "Rocky",
+      "operatingsystemrelease": [
+        "8",
+        "9"
+      ]
+    },
+    {
+      "operatingsystem": "AlmaLinux",
+      "operatingsystemrelease": [
+        "8",
+        "9"
       ]
     }
   ],
@@ -38,7 +53,13 @@
       "version_requirement": ">= 6.21.0 < 8.0.0"
     }
   ],
+<<<<<<< HEAD
   "pdk-version": "2.7.0",
   "template-url": "pdk-default#2.7.2",
   "template-ref": "tags/2.7.2-0-g3f1215d"
+=======
+  "pdk-version": "2.5.0",
+  "template-url": "pdk-default#2.5.0",
+  "template-ref": "tags/2.5.0-0-g369d483"
+>>>>>>> 601883b (Add support for managing custom profiles)
 }

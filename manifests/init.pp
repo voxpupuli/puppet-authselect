@@ -15,6 +15,8 @@
 # @param profile_options
 #   What options should we pass to authselect
 #   ie, what features should be enabled/disabled?
+# @param custom_profiles
+#   Custom profiles to manage
 class authselect (
   Boolean $package_manage,
   String  $package_ensure,
@@ -23,6 +25,7 @@ class authselect (
   Boolean $profile_manage,
   String[1] $profile,
   Array[String, 0] $profile_options,
+  Hash $custom_profiles,
 ) {
   if $package_manage {
     package { $package_names:
