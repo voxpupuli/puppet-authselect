@@ -137,7 +137,9 @@ Manage file contents in a custom authselect profile
 ##### 
 
 ```puppet
-authselect::custom_profile_content { 'custom/myprofile/': }
+authselect::custom_profile_content { 'myprofile/filename':
+  content => "File contents\n",
+}
 ```
 
 #### Parameters

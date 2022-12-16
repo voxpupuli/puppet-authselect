@@ -8,7 +8,9 @@
 # @param mode The file resource `mode` attribute
 #
 # @example
-#   authselect::custom_profile_content { 'custom/myprofile/': }
+#   authselect::custom_profile_content { 'myprofile/filename':
+#     content => "File contents\n",
+#   }
 define authselect::custom_profile_content (
   String               $content,
   Pattern[
