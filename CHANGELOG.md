@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 1.0.0
+
+**Features**
+* The exec which sets the profile now has a static name
+* When not managing the profile, a noop exec is created with the static name for ordering purposes
+
+**Breaking Change**
+
+The exec resource which sets the profile is now statically named `authselect set profile`.
+
 ## Release 0.1.3
 
 **Bug Fixes**

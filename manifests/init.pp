@@ -24,35 +24,40 @@ class authselect (
   String[1] $profile,
   Array[String, 0] $profile_options,
 ) {
-
   if $package_manage {
     package { $package_names:
-      ensure => $package_ensure
+      ensure => $package_ensure,
+      before => Exec['authselect set profile'],
     }
   }
 
-  if $profile_manage {
-    unless $package_ensure == 'absent' {
-      if $facts['authselect_profile_features'] {
-        $current_features = sort($facts['authselect_profile_features'])
-      } else {
-        $current_features = []
-      }
-      $requested_features = sort($profile_options)
-      $requested_features_string = join($requested_features, ' ')
+  if $profile_manage and $package_ensure != 'absent' {
+    if $facts['authselect_profile_features'] {
+      $current_features = sort($facts['authselect_profile_features'])
+    } else {
+      $current_features = []
+    }
+    $requested_features = sort($profile_options)
+    $requested_features_string = join($requested_features, ' ')
 
-      if join($current_features, ' ') != $requested_features_string {
-        exec { "authselect set profile=${profile} features=${requested_features}":
-          path    => ['/usr/bin', '/usr/sbin',],
-          command => "authselect select ${profile} ${requested_features_string} --force",
-        }
-      } else {
-        exec { "authselect set profile=${profile} features=${requested_features}":
-          path    => ['/usr/bin', '/usr/sbin',],
-          command => "authselect select ${profile} ${requested_features_string} --force",
-          unless  => 'authselect check',
-        }
+    if join($current_features, ' ') != $requested_features_string {
+      exec { 'authselect set profile':
+        path    => ['/usr/bin', '/usr/sbin',],
+        command => "authselect select ${profile} ${requested_features_string} --force",
       }
+    } else {
+      exec { 'authselect set profile':
+        path    => ['/usr/bin', '/usr/sbin',],
+        command => "authselect select ${profile} ${requested_features_string} --force",
+        unless  => 'authselect check',
+      }
+    }
+  } else {
+    # stub this out so you can order against it if you need to
+    exec { 'authselect set profile':
+      path    => ['/usr/bin', '/bin',],
+      command => 'true',
+      unless  => 'true',
     }
   }
 }

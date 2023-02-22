@@ -14,10 +14,11 @@ describe 'authselect' do
           it { is_expected.to have_package_resource_count(1) }
           it { is_expected.to have_exec_resource_count(1) }
           it { is_expected.to contain_package('authselect').with_ensure('present') }
-          it { is_expected.to contain_exec('authselect set profile=minimal features=[]') }
+          it { is_expected.to contain_exec('authselect set profile').with_command('authselect select minimal  --force') }
         else
           it { is_expected.to have_package_resource_count(0) }
-          it { is_expected.to have_exec_resource_count(0) }
+          it { is_expected.to have_exec_resource_count(1) }
+          it { is_expected.to contain_exec('authselect set profile').with_command('true') }
         end
       end
 
@@ -31,7 +32,8 @@ describe 'authselect' do
 
         it { is_expected.to compile }
         it { is_expected.to contain_package('authselect').with_ensure('present') }
-        it { is_expected.to have_exec_resource_count(0) }
+        it { is_expected.to contain_exec('authselect set profile').with_command('true') }
+        it { is_expected.to have_exec_resource_count(1) }
       end
 
       context 'no package, yes profile' do
@@ -45,7 +47,7 @@ describe 'authselect' do
         it { is_expected.to compile }
         it { is_expected.to have_package_resource_count(0) }
         it { is_expected.to have_exec_resource_count(1) }
-        it { is_expected.to contain_exec('authselect set profile=minimal features=[]') }
+        it { is_expected.to contain_exec('authselect set profile').with_command('authselect select minimal  --force') }
       end
 
       context 'yes package=latest, yes profile' do
@@ -62,7 +64,7 @@ describe 'authselect' do
         it { is_expected.to contain_package('name1').with_ensure('latest') }
         it { is_expected.to contain_package('name2').with_ensure('latest') }
         it { is_expected.to have_package_resource_count(2) }
-        it { is_expected.to contain_exec('authselect set profile=minimal features=[]') }
+        it { is_expected.to contain_exec('authselect set profile').with_command('authselect select minimal  --force') }
       end
 
       context 'yes package=absent, yes profile' do
@@ -77,7 +79,8 @@ describe 'authselect' do
 
         it { is_expected.to compile }
         it { is_expected.to contain_package('authselect').with_ensure('absent') }
-        it { is_expected.to have_exec_resource_count(0) }
+        it { is_expected.to have_exec_resource_count(1) }
+        it { is_expected.to contain_exec('authselect set profile').with_command('true') }
       end
 
       context 'yes package, yes profile, with options' do
@@ -95,7 +98,7 @@ describe 'authselect' do
         it { is_expected.to have_exec_resource_count(1) }
         it { is_expected.to contain_package('authselect').with_ensure('present') }
         # it { pp catalogue.resources }
-        it { is_expected.to contain_exec('authselect set profile=testing features=[a, b]') }
+        it { is_expected.to contain_exec('authselect set profile').with_command('authselect select testing a b --force') }
       end
 
       context 'yes package, yes profile, with options, already present' do
@@ -117,9 +120,7 @@ describe 'authselect' do
         it { is_expected.to have_exec_resource_count(1) }
         it { is_expected.to contain_package('authselect').with_ensure('present') }
         # it { pp catalogue.resources }
-        it { is_expected.to contain_exec('authselect set profile=testing features=[a, b]').with({
-          unless: 'authselect check'
-        }) }
+        it { is_expected.to contain_exec('authselect set profile').with_unless('authselect check').with_command('authselect select testing a b --force') }
       end
     end
   end

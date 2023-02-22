@@ -33,6 +33,8 @@ You will need to start any required services **BEFORE** the authselect class run
 
 This class does not track things like `sssd` or `winbind` services.
 
+You may use `Class[authselect]` or `Exec[authselect set profile]` to ensure your services are running.
+
 ## Usage
 
 Example class invocation:
