@@ -1,6 +1,6 @@
 # @summary Manage a custom authselect profile
 #
-# @param contents Custom profile contents us this only if you fully understand how authselect works!
+# @param contents Custom profile contents use this only if you fully understand how authselect works!
 #
 # @example
 #   authselect::custom_profile::contents:
