@@ -4,9 +4,6 @@ require 'spec_helper'
 
 describe 'authselect::custom_profile' do
   let(:title) { 'namevar' }
-  let(:params) do
-    {}
-  end
 
   on_supported_os.each do |os, os_facts|
     context "on #{os}" do
