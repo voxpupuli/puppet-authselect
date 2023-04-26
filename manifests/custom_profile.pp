@@ -29,7 +29,7 @@ define authselect::custom_profile (
   }
 
   $_profile_dir = $vendor ? {
-    true    => '/usr/share/authselect/vendor/',
+    true    => '/usr/share/authselect/vendor',
     default => '/etc/authselect/custom',
   }
 
@@ -57,10 +57,8 @@ define authselect::custom_profile (
     default => '',
   }
 
-  exec { "authselect create-profile -b ${base_profile} ${name}":
+  exec { "authselect create-profile -b ${base_profile} ${name}${_vendor}${_symlink_meta}${_symlink_nsswitch}${_symlink_pam}${_symlink_dconf}":
     path    => ['/usr/bin', '/usr/sbin',],
-    command => "authselect create-profile
-                 -b ${base_profile} ${name}${_symlink_meta}${_symlink_nsswitch}${_symlink_pam}${symlink_dconf}",
     creates => "${_profile_dir}/${name}",
   }
 
