@@ -14,7 +14,7 @@
 define authselect::custom_profile_content (
   String               $content,
   Pattern[
-    /^\/etc\/authselect\/custom\/[^\/]+\/[^\/]+$|\/usr\/share\/authselect\/vendor\/[^\/]+\/[^\/]+$/
+    /(^\/etc\/authselect\/custom\/[^\/]+\/[^\/]+$)|(^\/usr\/share\/authselect\/vendor\/[^\/]+\/[^\/]+$)/
   ]                    $path   = "/etc/authselect/custom/${name}",
   Stdlib::Ensure::File $ensure = 'file',
   String[1]            $owner  = 'root',

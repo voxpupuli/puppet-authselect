@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe 'authselect::custom_profile_content' do
-  let(:title) { 'namevar' }
+  let(:title) { 'testprofile/nsswitch.conf' }
   let(:params) do
     {
       content: ''
