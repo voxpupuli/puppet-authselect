@@ -57,13 +57,13 @@ class authselect (
     }
   }
 
+  if $profile_manage and $package_ensure != 'absent' {
+    include 'authselect::config'
+  }
+
   $custom_profiles.each |$key, $value| {
     authselect::custom_profile { $key:
       * => $value,
     }
-  }
-
-  if $profile_manage and $package_ensure != 'absent' {
-    include 'authselect::config'
   }
 }

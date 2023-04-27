@@ -4,4 +4,4 @@
 fixtures:
   forge_modules:
     debug: 'nwops/debug'
-    stdlib: "puppetlabs/stdlib"
+    stdlib: 'puppetlabs/stdlib'
