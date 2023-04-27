@@ -31,16 +31,16 @@
 #     'local_user_custom_nsswitch':
 #       contents:
 #         'nsswitch.conf':
-#         content: 'passwd:     files systemd   {exclude if "with-custom-passwd"}
+#           content: 'passwd:     files systemd   {exclude if "with-custom-passwd"}
 # group:      files systemd   {exclude if "with-custom-group"}
 # netgroup:   files           {exclude if "with-custom-netgroup"}
 # automount:  files           {exclude if "with-custom-automount"}
 # services:   files           {exclude if "with-custom-services"}
 # sudoers:    files           {include if "with-sudo"}'
-#         ensure: 'file'
-#         owner: 'root'
-#         group: 'root'
-#         mode: '0664'
+#           ensure: 'file'
+#           owner: 'root'
+#           group: 'root'
+#           mode: '0664'
 class authselect (
   Boolean $package_manage,
   String  $package_ensure,
