@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 1.0.1
+
+**Bug Fixes**
+* Authselect now runs correctly when changing profile, but leaving options alone
+
 ## Release 1.0.0
 
 **Features**
