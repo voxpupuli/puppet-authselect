@@ -1,6 +1,6 @@
 {
   "name": "jcpunk-authselect",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Pat Riehecky",
   "summary": "Manage authconfig active profile",
   "license": "Apache-2.0",
@@ -38,7 +38,7 @@
       "version_requirement": ">= 6.21.0 < 8.0.0"
     }
   ],
-  "pdk-version": "2.7.0",
-  "template-url": "pdk-default#2.7.2",
-  "template-ref": "tags/2.7.2-0-g3f1215d"
+  "pdk-version": "2.7.1",
+  "template-url": "pdk-default#2.7.4",
+  "template-ref": "tags/2.7.4-0-g58edf57"
 }
