@@ -66,4 +66,9 @@ class authselect (
       * => $value,
     }
   }
+
+  $_selected_profile = "${profile.split('/')[1]}"
+  if $_selected_profile in inline_template("<%= custom_profiles.keys %>") and defined('Class[authselect::config]') {
+    Authselect::Custom_profile[$_selected_profile] ~> Class['authselect::config']
+  }
 }

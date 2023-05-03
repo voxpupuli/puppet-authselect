@@ -68,8 +68,4 @@ define authselect::custom_profile (
       *    => $value,
     }
   }
-
-  if $authselect::profile == $_profile_name and defined('Class[authselect::config]') {
-    Authselect::Custom_profile[$title] ~> Class['authselect::config']
-  }
 }
