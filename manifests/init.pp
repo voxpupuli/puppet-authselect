@@ -51,10 +51,7 @@ class authselect (
   Hash $custom_profiles,
 ) {
   if $package_manage {
-    package { $package_names:
-      ensure => $package_ensure,
-      before => Exec['authselect set profile'],
-    }
+    include 'authselect::package'
   }
 
   if $profile_manage and $package_ensure != 'absent' {
