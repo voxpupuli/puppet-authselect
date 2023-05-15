@@ -18,13 +18,9 @@ describe 'authselect::custom_profile_content' do
 
         it { is_expected.to compile }
 
-        if os_facts[:os]['family'] == 'RedHat' && os_facts[:os]['release']['major'] > '7'
-          it { is_expected.to contain_file('/etc/authselect/custom/testprofile/nsswitch.conf').with({
-            content: 'test'
-          })}
-        else
-          it { is_expected.to have_file_resource_count(0) }
-        end
+        it { is_expected.to contain_file('/etc/authselect/custom/testprofile/nsswitch.conf').with({
+          content: 'test'
+        })}
       end
 
       context 'when using the vendor path' do
@@ -37,13 +33,9 @@ describe 'authselect::custom_profile_content' do
 
         it { is_expected.to compile }
 
-        if os_facts[:os]['family'] == 'RedHat' && os_facts[:os]['release']['major'] > '7'
-          it { is_expected.to contain_file('/usr/share/authselect/vendor/testprofile/nsswitch.conf').with({
-            content: 'test'
-          })}
-        else
-          it { is_expected.to have_file_resource_count(0) }
-        end
+        it { is_expected.to contain_file('/usr/share/authselect/vendor/testprofile/nsswitch.conf').with({
+          content: 'test'
+        })}
       end
 
     end
