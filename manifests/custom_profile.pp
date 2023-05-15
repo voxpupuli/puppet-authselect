@@ -57,7 +57,9 @@ define authselect::custom_profile (
     default => '',
   }
 
-  exec { "authselect create-profile -b ${base_profile} ${name}${_vendor}${_symlink_meta}${_symlink_nsswitch}${_symlink_pam}${_symlink_dconf}":
+  $_authselect_options = "${_vendor}${_symlink_meta}${_symlink_nsswitch}${_symlink_pam}${_symlink_dconf}"
+
+  exec { "authselect create-profile -b ${base_profile} ${name}${_authselect_options}":
     path    => ['/usr/bin', '/usr/sbin',],
     creates => "${_profile_dir}/${name}",
   }
