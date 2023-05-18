@@ -8,13 +8,17 @@ deploy that package rather than build them ad-hoc.
 
 ## Table of Contents
 
-1. [Description](#description)
-1. [Setup - The basics of getting started with authselect](#setup)
-    * [What authselect affects](#what-authselect-affects)
-    * [Setup requirements](#setup-requirements)
-1. [Usage - Configuration options and additional functionality](#usage)
-1. [Limitations - OS compatibility, etc.](#limitations)
-1. [Development - Guide for contributing to the module](#development)
+- [authselect](#authselect)
+  - [Table of Contents](#table-of-contents)
+  - [Description](#description)
+  - [Setup](#setup)
+    - [What authselect affects](#what-authselect-affects)
+    - [Setup Requirements](#setup-requirements)
+  - [Usage](#usage)
+    - [Basic class usage](#basic-class-usage)
+    - [Creating and selecting a custom profile](#creating-and-selecting-a-custom-profile)
+    - [Facts](#facts)
+  - [Development](#development)
 
 ## Description
 
@@ -37,6 +41,7 @@ You may use `Class[authselect]` or `Exec[authselect set profile]` to ensure your
 
 ## Usage
 
+### Basic class usage
 Example class invocation:
 
 ```puppet
@@ -52,12 +57,42 @@ authselect::profile_options:
   - with-mkhomedir
   - without-pam-u2f-nouserok
 ```
+### Creating and selecting a custom profile
+Example custom profile configuration:
 
+```puppet
+class { 'authselect
+  profile_manage  => true,
+  profile         => 'custom/new_profile',
+  custom_profiles => {
+    'new_profile' => {
+      'base_profile' => 'sssd',
+      'contents' => {
+        'nsswitch.conf' => {
+          'content' => '<your custom nsswitch content here>'
+        }
+      }
+    }
+  }
+}
+```
+
+And the Hierafile would look like:
+```yaml
+authselect::profile_manage: true
+authselect::profile: 'custom/new_profile'
+authselect::custom_profiles:
+  new_profile:
+    base_profile: 'sssd'
+    contents:
+      nsswitch.conf:
+        content: '<your custom nsswitch content here>'
+```
+
+The code above will create a new custom authselect profile called 'new_profile'. The profile will be based off of the sssd profile. The profile will also contain an nsswitch file that will contain the custom content specified in the `content` parameter. To use the new custom profile the `authselect::profile` parameter will need to prefix the name of the custom profile with `custom/` as shown above.
+
+### Facts
 This class also provides two facts: `authselect_profile` and `authselect_profile_features`.
-
-## Limitations
-
-This class does not have methods for deploying or generating custom profiles.
 
 ## Development
 

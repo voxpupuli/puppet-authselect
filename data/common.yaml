@@ -7,4 +7,7 @@ authselect::package_names:
 authselect::profile_manage: true
 authselect::profile: minimal
 authselect::profile_options: []
+authselect::requested_features: []
+
+authselect::custom_profiles: {}
 ...

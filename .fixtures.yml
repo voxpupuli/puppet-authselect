@@ -3,5 +3,5 @@
 ---
 fixtures:
   forge_modules:
-    # debug: 'nwops/debug'
-    # stdlib: "puppetlabs/stdlib"
+    debug: 'nwops/debug'
+    stdlib: 'puppetlabs/stdlib'
