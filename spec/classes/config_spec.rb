@@ -16,6 +16,7 @@ describe 'authselect::config' do
       let(:pre_condition) { 'include authselect' }
 
       it { is_expected.to compile }
+      it { is_expected.to contain_exec('authselect set profile') }
     end
   end
 end
