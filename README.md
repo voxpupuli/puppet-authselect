@@ -2,10 +2,6 @@
 
 Manage authselect profile on systems that support it.
 
-This module does not create custom profiles or deploy them.
-For consistency, you are advised to package them up and then
-deploy that package rather than build them ad-hoc.
-
 ## Table of Contents
 
 - [authselect](#authselect)
