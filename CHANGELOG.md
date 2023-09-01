@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release 1.1.2
+**Features**
+* Note puppet8 support
+
 ## Release 1.1.1
 **Bug Fixes**
 * Return exec resource with static name for ordering
