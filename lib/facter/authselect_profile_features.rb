@@ -12,10 +12,8 @@ Facter.add(:authselect_profile_features) do
       begin
         cmd_out = Facter::Util::Resolution.exec('authselect current')
         retval = YAML.safe_load(cmd_out)['Enabled features']
-        if retval == 'None'
-          retval = []
-        end
-      rescue
+        retval = [] if retval == 'None'
+      rescue StandardError
         nil
       end
     end
