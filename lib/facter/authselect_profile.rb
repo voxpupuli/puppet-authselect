@@ -12,7 +12,7 @@ Facter.add(:authselect_profile) do
       begin
         cmd_out = Facter::Util::Resolution.exec('authselect current')
         retval = YAML.safe_load(cmd_out)['Profile ID']
-      rescue
+      rescue StandardError
         nil
       end
     end

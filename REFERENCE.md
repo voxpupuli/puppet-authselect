@@ -7,13 +7,13 @@
 ### Classes
 
 * [`authselect`](#authselect): Manage authselect's active profile
-* [`authselect::config`](#authselectconfig): Configure authselect
-* [`authselect::package`](#authselectpackage): Manage the authselect package(s)
+* [`authselect::config`](#authselect--config): Configure authselect
+* [`authselect::package`](#authselect--package): Manage the authselect package(s)
 
 ### Defined types
 
-* [`authselect::custom_profile`](#authselectcustom_profile): Manage a custom authselect profile
-* [`authselect::custom_profile_content`](#authselectcustom_profile_content): Manage file contents in a custom authselect profile
+* [`authselect::custom_profile`](#authselect--custom_profile): Manage a custom authselect profile
+* [`authselect::custom_profile_content`](#authselect--custom_profile_content): Manage file contents in a custom authselect profile
 
 ## Classes
 
@@ -63,59 +63,59 @@ authselect::custom_profiles:
 
 The following parameters are available in the `authselect` class:
 
-* [`package_manage`](#package_manage)
-* [`package_ensure`](#package_ensure)
-* [`package_names`](#package_names)
-* [`profile_manage`](#profile_manage)
-* [`profile`](#profile)
-* [`profile_options`](#profile_options)
-* [`custom_profiles`](#custom_profiles)
+* [`package_manage`](#-authselect--package_manage)
+* [`package_ensure`](#-authselect--package_ensure)
+* [`package_names`](#-authselect--package_names)
+* [`profile_manage`](#-authselect--profile_manage)
+* [`profile`](#-authselect--profile)
+* [`profile_options`](#-authselect--profile_options)
+* [`custom_profiles`](#-authselect--custom_profiles)
 
-##### <a name="package_manage"></a>`package_manage`
+##### <a name="-authselect--package_manage"></a>`package_manage`
 
 Data type: `Boolean`
 
 Should this class manage the authselect package(s)
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-authselect--package_ensure"></a>`package_ensure`
 
 Data type: `String`
 
 Passed to `package` `ensure` for the authselect package(s)
 
-##### <a name="package_names"></a>`package_names`
+##### <a name="-authselect--package_names"></a>`package_names`
 
 Data type: `Array[String[1], 1]`
 
 Packages to manage in this class
 
-##### <a name="profile_manage"></a>`profile_manage`
+##### <a name="-authselect--profile_manage"></a>`profile_manage`
 
 Data type: `Boolean`
 
 Should this class set the active profile
 
-##### <a name="profile"></a>`profile`
+##### <a name="-authselect--profile"></a>`profile`
 
 Data type: `String[1]`
 
 Which authselect profile should be used.
 Note: If using a custom (non-vendor) profile you must prefix the name with 'custom/'
 
-##### <a name="profile_options"></a>`profile_options`
+##### <a name="-authselect--profile_options"></a>`profile_options`
 
 Data type: `Array[String, 0]`
 
 What options should we pass to authselect
 ie, what features should be enabled/disabled?
 
-##### <a name="custom_profiles"></a>`custom_profiles`
+##### <a name="-authselect--custom_profiles"></a>`custom_profiles`
 
 Data type: `Hash`
 
 Custom profiles to manage
 
-### <a name="authselectconfig"></a>`authselect::config`
+### <a name="authselect--config"></a>`authselect::config`
 
 Configure authselect
 
@@ -127,7 +127,7 @@ Configure authselect
 include authselect::config
 ```
 
-### <a name="authselectpackage"></a>`authselect::package`
+### <a name="authselect--package"></a>`authselect::package`
 
 Manage the authselect package(s)
 
@@ -141,7 +141,7 @@ include authselect::package
 
 ## Defined types
 
-### <a name="authselectcustom_profile"></a>`authselect::custom_profile`
+### <a name="authselect--custom_profile"></a>`authselect::custom_profile`
 
 Manage a custom authselect profile
 
@@ -157,15 +157,15 @@ authselect::custom_profile { 'namevar': }
 
 The following parameters are available in the `authselect::custom_profile` defined type:
 
-* [`contents`](#contents)
-* [`base_profile`](#base_profile)
-* [`vendor`](#vendor)
-* [`symlink_meta`](#symlink_meta)
-* [`symlink_nsswitch`](#symlink_nsswitch)
-* [`symlink_pam`](#symlink_pam)
-* [`symlink_dconf`](#symlink_dconf)
+* [`contents`](#-authselect--custom_profile--contents)
+* [`base_profile`](#-authselect--custom_profile--base_profile)
+* [`vendor`](#-authselect--custom_profile--vendor)
+* [`symlink_meta`](#-authselect--custom_profile--symlink_meta)
+* [`symlink_nsswitch`](#-authselect--custom_profile--symlink_nsswitch)
+* [`symlink_pam`](#-authselect--custom_profile--symlink_pam)
+* [`symlink_dconf`](#-authselect--custom_profile--symlink_dconf)
 
-##### <a name="contents"></a>`contents`
+##### <a name="-authselect--custom_profile--contents"></a>`contents`
 
 Data type: `Hash`
 
@@ -173,7 +173,7 @@ Custom profile contents use this only if you fully understand how authselect wor
 
 Default value: `{}`
 
-##### <a name="base_profile"></a>`base_profile`
+##### <a name="-authselect--custom_profile--base_profile"></a>`base_profile`
 
 Data type: `Enum['sssd','winbind', 'nis', 'minimal']`
 
@@ -181,7 +181,7 @@ the profile to base your custom profile off of, defaults to sssd
 
 Default value: `'sssd'`
 
-##### <a name="vendor"></a>`vendor`
+##### <a name="-authselect--custom_profile--vendor"></a>`vendor`
 
 Data type: `Boolean`
 
@@ -189,41 +189,41 @@ Specify whether this profile goes into the custom folder or the vendor profile i
 keep in mind that if you wish to select a custom profile you must prefix the name of the profile
 with 'custom/' when setting authselect::profile
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="symlink_meta"></a>`symlink_meta`
+##### <a name="-authselect--custom_profile--symlink_meta"></a>`symlink_meta`
 
 Data type: `Boolean`
 
 Symlink meta files from the base profile instead of copying them
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="symlink_nsswitch"></a>`symlink_nsswitch`
+##### <a name="-authselect--custom_profile--symlink_nsswitch"></a>`symlink_nsswitch`
 
 Data type: `Boolean`
 
 Symlink nsswitch files from the base profile instead of copying them
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="symlink_pam"></a>`symlink_pam`
+##### <a name="-authselect--custom_profile--symlink_pam"></a>`symlink_pam`
 
 Data type: `Boolean`
 
 Symlink pam files from the base profile instead of copying them
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="symlink_dconf"></a>`symlink_dconf`
+##### <a name="-authselect--custom_profile--symlink_dconf"></a>`symlink_dconf`
 
 Data type: `Boolean`
 
 Symlink dconf files from the base profile instead of copying them
 
-Default value: ``false``
+Default value: `false`
 
-### <a name="authselectcustom_profile_content"></a>`authselect::custom_profile_content`
+### <a name="authselect--custom_profile_content"></a>`authselect::custom_profile_content`
 
 Manage file contents in a custom authselect profile
 
@@ -241,31 +241,35 @@ authselect::custom_profile_content { 'myprofile/filename':
 
 The following parameters are available in the `authselect::custom_profile_content` defined type:
 
-* [`content`](#content)
-* [`path`](#path)
-* [`ensure`](#ensure)
-* [`owner`](#owner)
-* [`group`](#group)
-* [`mode`](#mode)
+* [`content`](#-authselect--custom_profile_content--content)
+* [`path`](#-authselect--custom_profile_content--path)
+* [`ensure`](#-authselect--custom_profile_content--ensure)
+* [`owner`](#-authselect--custom_profile_content--owner)
+* [`group`](#-authselect--custom_profile_content--group)
+* [`mode`](#-authselect--custom_profile_content--mode)
 
-##### <a name="content"></a>`content`
+##### <a name="-authselect--custom_profile_content--content"></a>`content`
 
 Data type: `String`
 
 The file resource `content` attribute
 
-##### <a name="path"></a>`path`
+##### <a name="-authselect--custom_profile_content--path"></a>`path`
 
-Data type: `Pattern[
+Data type:
+
+```puppet
+Pattern[
     /^\/etc\/authselect\/custom\/[^\/]+\/[^\/]+$/,
     /^\/usr\/share\/authselect\/vendor\/[^\/]+\/[^\/]+$/
-  ]`
+  ]
+```
 
 The full path to the managed file
 
 Default value: `"/etc/authselect/custom/${name}"`
 
-##### <a name="ensure"></a>`ensure`
+##### <a name="-authselect--custom_profile_content--ensure"></a>`ensure`
 
 Data type: `Stdlib::Ensure::File`
 
@@ -273,7 +277,7 @@ The file resource `ensure` attribute
 
 Default value: `'file'`
 
-##### <a name="owner"></a>`owner`
+##### <a name="-authselect--custom_profile_content--owner"></a>`owner`
 
 Data type: `String[1]`
 
@@ -281,7 +285,7 @@ The file resource `owner` attribute
 
 Default value: `'root'`
 
-##### <a name="group"></a>`group`
+##### <a name="-authselect--custom_profile_content--group"></a>`group`
 
 Data type: `String[1]`
 
@@ -289,7 +293,7 @@ The file resource `group` attribute
 
 Default value: `'root'`
 
-##### <a name="mode"></a>`mode`
+##### <a name="-authselect--custom_profile_content--mode"></a>`mode`
 
 Data type: `Stdlib::Filemode`
 

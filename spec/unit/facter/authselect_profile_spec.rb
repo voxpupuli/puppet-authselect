@@ -7,7 +7,7 @@ require 'facter/authselect_profile'
 describe :authselect_profile, type: :fact do
   subject(:fact) { Facter.fact(:authselect_profile) }
 
-  before :each do
+  before do
     # perform any action that should be run before every test
     Facter.clear
     allow(Facter.fact(:kernel)).to receive(:value).and_return('Linux')
@@ -30,7 +30,7 @@ describe :authselect_profile, type: :fact do
   end
 
   context 'without authselect' do
-    before :each do
+    before do
       expect(Facter::Util::Resolution).to receive(:which).with('authselect').and_return(nil)
       expect(Facter::Util::Resolution).not_to receive(:exec).with('authselect current')
     end
@@ -39,7 +39,7 @@ describe :authselect_profile, type: :fact do
   end
 
   context 'with authselect, but no profile' do
-    before :each do
+    before do
       expect(Facter::Util::Resolution).to receive(:which).with('authselect').and_return('authselect')
       expect(Facter::Util::Resolution).to receive(:exec).with('authselect current').and_return('No existing configuration detected.')
     end
@@ -48,7 +48,7 @@ describe :authselect_profile, type: :fact do
   end
 
   context 'with authselect, but profile but no features' do
-    before :each do
+    before do
       expect(Facter::Util::Resolution).to receive(:which).with('authselect').and_return('authselect')
       expect(Facter::Util::Resolution).to receive(:exec).with('authselect current').and_return(profile)
     end
@@ -57,7 +57,7 @@ describe :authselect_profile, type: :fact do
   end
 
   context 'with authselect, but profile with features' do
-    before :each do
+    before do
       expect(Facter::Util::Resolution).to receive(:which).with('authselect').and_return('authselect')
       expect(Facter::Util::Resolution).to receive(:exec).with('authselect current').and_return(profile_with_features)
     end

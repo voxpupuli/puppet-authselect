@@ -55,7 +55,7 @@ describe 'authselect' do
           {
             'package_manage' => true,
             'package_ensure' => 'latest',
-            'package_names'  => ['name1', 'name2'],
+            'package_names'  => %w[name1 name2],
             'profile_manage' => true,
           }
         end
@@ -88,7 +88,7 @@ describe 'authselect' do
             'package_manage' => true,
             'profile_manage' => true,
             'profile' => 'testing',
-            'profile_options' => ['b', 'a'],
+            'profile_options' => %w[b a],
           }
         end
 
@@ -102,8 +102,8 @@ describe 'authselect' do
       end
 
       context 'yes package, yes profile, with options, already present' do
-        before(:each) do
-          os_facts[:authselect_profile_features] = ['a', 'b' ]
+        before do
+          os_facts[:authselect_profile_features] = %w[a b]
           os_facts[:authselect_profile] = 'testing'
         end
 
@@ -112,7 +112,7 @@ describe 'authselect' do
             'package_manage' => true,
             'profile_manage' => true,
             'profile' => 'testing',
-            'profile_options' => ['b', 'a'],
+            'profile_options' => %w[b a],
           }
         end
 
@@ -121,14 +121,15 @@ describe 'authselect' do
         # Need to figure out how to mock up authselect check before this works
         # it { is_expected.to have_exec_resource_count(1) }
         it { is_expected.to contain_package('authselect').with_ensure('present') }
+
         # it { pp catalogue.resources }
-        it { is_expected.to contain_exec('authselect set profile=testing features=[a, b]').with({
-          unless: 'authselect check'
-        }) }
+        it {
+          is_expected.to contain_exec('authselect set profile=testing features=[a, b]').with({ unless: 'authselect check' })
+        }
       end
 
       context 'yes package, yes profile, creating a custom profile' do
-        before(:each) do
+        before do
           os_facts[:authselect_profile] = 'minimal'
         end
 
@@ -150,12 +151,14 @@ describe 'authselect' do
         # Need to figure out how to mock up authselect check before this works
         # it { is_expected.to have_exec_resource_count(1) }
         it { is_expected.to contain_package('authselect').with_ensure('present') }
-        it { is_expected.to contain_exec('authselect set profile=custom/testing features=[]').with({
-          command: 'authselect select custom/testing  --force'
-        }) }
-        it { is_expected.to contain_exec('authselect create-profile -b sssd testing').with({
-          creates: '/etc/authselect/custom/testing'
-        }) }
+
+        it {
+          is_expected.to contain_exec('authselect set profile=custom/testing features=[]').with({ command: 'authselect select custom/testing  --force' })
+        }
+
+        it {
+          is_expected.to contain_exec('authselect create-profile -b sssd testing').with({ creates: '/etc/authselect/custom/testing' })
+        }
       end
     end
   end

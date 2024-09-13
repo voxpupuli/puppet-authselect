@@ -12,10 +12,9 @@ describe 'authselect::custom_profile' do
       context 'when using defaults' do
         it { is_expected.to compile }
 
-        
-        it { is_expected.to contain_exec('authselect create-profile -b sssd test-profile').with({
-          creates: '/etc/authselect/custom/test-profile'
-        }) }
+        it {
+          is_expected.to contain_exec('authselect create-profile -b sssd test-profile').with({ creates: '/etc/authselect/custom/test-profile' })
+        }
       end
 
       context 'with vendor' do
@@ -27,9 +26,9 @@ describe 'authselect::custom_profile' do
 
         it { is_expected.to compile }
 
-        it { is_expected.to contain_exec('authselect create-profile -b sssd test-profile --vendor').with({
-          creates: '/usr/share/authselect/vendor/test-profile'
-        }) }
+        it {
+          is_expected.to contain_exec('authselect create-profile -b sssd test-profile --vendor').with({ creates: '/usr/share/authselect/vendor/test-profile' })
+        }
       end
 
       context 'with symlink_meta' do
@@ -41,9 +40,9 @@ describe 'authselect::custom_profile' do
 
         it { is_expected.to compile }
 
-        it { is_expected.to contain_exec('authselect create-profile -b sssd test-profile --symlink-meta').with({
-          creates: '/etc/authselect/custom/test-profile'
-        }) }
+        it {
+          is_expected.to contain_exec('authselect create-profile -b sssd test-profile --symlink-meta').with({ creates: '/etc/authselect/custom/test-profile' })
+        }
       end
 
       context 'with symlink_nsswitch' do
@@ -55,9 +54,9 @@ describe 'authselect::custom_profile' do
 
         it { is_expected.to compile }
 
-        it { is_expected.to contain_exec('authselect create-profile -b sssd test-profile --symlink-nsswitch').with({
-          creates: '/etc/authselect/custom/test-profile'
-        }) }
+        it {
+          is_expected.to contain_exec('authselect create-profile -b sssd test-profile --symlink-nsswitch').with({ creates: '/etc/authselect/custom/test-profile' })
+        }
       end
 
       context 'with symlink_pam' do
@@ -69,9 +68,9 @@ describe 'authselect::custom_profile' do
 
         it { is_expected.to compile }
 
-        it { is_expected.to contain_exec('authselect create-profile -b sssd test-profile --symlink-pam').with({
-          creates: '/etc/authselect/custom/test-profile'
-        }) }
+        it {
+          is_expected.to contain_exec('authselect create-profile -b sssd test-profile --symlink-pam').with({ creates: '/etc/authselect/custom/test-profile' })
+        }
       end
 
       context 'with symlink_dconf' do
@@ -83,9 +82,9 @@ describe 'authselect::custom_profile' do
 
         it { is_expected.to compile }
 
-        it { is_expected.to contain_exec('authselect create-profile -b sssd test-profile --symlink-dconf').with({
-          creates: '/etc/authselect/custom/test-profile'
-        }) }
+        it {
+          is_expected.to contain_exec('authselect create-profile -b sssd test-profile --symlink-dconf').with({ creates: '/etc/authselect/custom/test-profile' })
+        }
       end
 
       context 'with all extra options' do
@@ -101,9 +100,11 @@ describe 'authselect::custom_profile' do
 
         it { is_expected.to compile }
 
-        it { is_expected.to contain_exec('authselect create-profile -b sssd test-profile --vendor --symlink-meta --symlink-nsswitch --symlink-pam --symlink-dconf').with({
-          creates: '/usr/share/authselect/vendor/test-profile'
-        }) }
+        it {
+          is_expected.to contain_exec('authselect create-profile -b sssd test-profile --vendor --symlink-meta --symlink-nsswitch --symlink-pam --symlink-dconf').with({
+                                                                                                                                                                        creates: '/usr/share/authselect/vendor/test-profile'
+                                                                                                                                                                      })
+        }
       end
 
       context 'with custom contents and no vendor' do
@@ -119,9 +120,9 @@ describe 'authselect::custom_profile' do
 
         it { is_expected.to compile }
 
-        it { is_expected.to create_authselect__custom_profile_content('test-profile/nsswitch.conf').with({
-          path: '/etc/authselect/custom/test-profile/nsswitch.conf'
-        }) }
+        it {
+          is_expected.to create_authselect__custom_profile_content('test-profile/nsswitch.conf').with({ path: '/etc/authselect/custom/test-profile/nsswitch.conf' })
+        }
       end
 
       context 'with custom contents and vendor' do
@@ -138,11 +139,10 @@ describe 'authselect::custom_profile' do
 
         it { is_expected.to compile }
 
-        it { is_expected.to create_authselect__custom_profile_content('test-profile/nsswitch.conf').with({
-          path: '/usr/share/authselect/vendor/test-profile/nsswitch.conf'
-        }) }
+        it {
+          is_expected.to create_authselect__custom_profile_content('test-profile/nsswitch.conf').with({ path: '/usr/share/authselect/vendor/test-profile/nsswitch.conf' })
+        }
       end
-
     end
   end
 end

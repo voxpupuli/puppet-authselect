@@ -11,9 +11,9 @@ class authselect::config {
   # This resource is just used for folks that need deterministic
   # ordering after the package is installed but before authselect is run
   exec { 'authselect set profile':
-      path    => ['/usr/bin', '/usr/sbin',],
-      command => 'true',
-      unless  =>  'true'
+    path    => ['/usr/bin', '/usr/sbin',],
+    command => 'true',
+    unless  => 'true',
   }
 
   if $current_features.join(' ') != $requested_features_string or $facts['authselect_profile'] != $authselect::profile {
