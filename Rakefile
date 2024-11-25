@@ -26,7 +26,7 @@ begin
 rescue LoadError
   # voxpupuli-release not present
 else
-  GCGConfig.user = 'voxpupuli'
+  GCGConfig.user = 'jstraw'
   GCGConfig.project = 'puppet-authselect'
 end
 
