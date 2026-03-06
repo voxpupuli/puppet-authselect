@@ -77,11 +77,15 @@ Data type: `Boolean`
 
 Should this class manage the authselect package(s)
 
+Default value: `true`
+
 ##### <a name="-authselect--package_ensure"></a>`package_ensure`
 
 Data type: `String`
 
 Passed to `package` `ensure` for the authselect package(s)
+
+Default value: `'present'`
 
 ##### <a name="-authselect--package_names"></a>`package_names`
 
@@ -89,11 +93,15 @@ Data type: `Array[String[1], 1]`
 
 Packages to manage in this class
 
+Default value: `['authselect']`
+
 ##### <a name="-authselect--profile_manage"></a>`profile_manage`
 
 Data type: `Boolean`
 
 Should this class set the active profile
+
+Default value: `true`
 
 ##### <a name="-authselect--profile"></a>`profile`
 
@@ -102,6 +110,8 @@ Data type: `String[1]`
 Which authselect profile should be used.
 Note: If using a custom (non-vendor) profile you must prefix the name with 'custom/'
 
+Default value: `'minimal'`
+
 ##### <a name="-authselect--profile_options"></a>`profile_options`
 
 Data type: `Array[String, 0]`
@@ -109,11 +119,15 @@ Data type: `Array[String, 0]`
 What options should we pass to authselect
 ie, what features should be enabled/disabled?
 
+Default value: `[]`
+
 ##### <a name="-authselect--custom_profiles"></a>`custom_profiles`
 
 Data type: `Hash`
 
 Custom profiles to manage
+
+Default value: `{}`
 
 ### <a name="authselect--config"></a>`authselect::config`
 

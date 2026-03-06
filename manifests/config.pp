@@ -17,7 +17,7 @@ class authselect::config {
   }
 
   if $current_features.join(' ') != $requested_features_string or $facts['authselect_profile'] != $authselect::profile {
-    exec { "authselect set profile=${authselect::profile} features=${requested_features}":
+    exec { "authselect set profile=${authselect::profile} features=${requested_features}": # lint:ignore:exec_idempotency
       path    => ['/usr/bin', '/usr/sbin',],
       command => "authselect select ${authselect::profile} ${requested_features_string} --force",
       require => Exec['authselect set profile'],
