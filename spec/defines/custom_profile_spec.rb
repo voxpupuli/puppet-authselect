@@ -102,7 +102,7 @@ describe 'authselect::custom_profile' do
 
         it {
           is_expected.to contain_exec('authselect create-profile -b sssd test-profile --vendor --symlink-meta --symlink-nsswitch --symlink-pam --symlink-dconf').with({
-                                                                                                                                                                        creates: '/usr/share/authselect/vendor/test-profile'
+                                                                                                                                                                        creates: '/usr/share/authselect/vendor/test-profile',
                                                                                                                                                                       })
         }
       end
@@ -112,8 +112,8 @@ describe 'authselect::custom_profile' do
           {
             'contents' => {
               'nsswitch.conf' => {
-                'content' => 'test'
-              }
+                'content' => 'test',
+              },
             },
           }
         end
@@ -131,8 +131,8 @@ describe 'authselect::custom_profile' do
             'vendor'   => true,
             'contents' => {
               'nsswitch.conf' => {
-                'content' => 'test'
-              }
+                'content' => 'test',
+              },
             },
           }
         end

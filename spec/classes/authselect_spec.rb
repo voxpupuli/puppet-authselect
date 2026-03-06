@@ -141,8 +141,8 @@ describe 'authselect' do
             'custom_profiles' => {
               'testing' => {
                 'base_profile' => 'sssd',
-              }
-            }
+              },
+            },
           }
         end
 
