@@ -3,7 +3,7 @@
 require 'yaml'
 
 Facter.add(:authselect_profile) do
-  # https://puppet.com/docs/puppet/latest/fact_overview.html
+  # https://docs.openvoxproject.org/openfact/latest/
   confine kernel: 'Linux'
   retval = nil
 
