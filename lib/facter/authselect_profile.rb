@@ -8,9 +8,9 @@ Facter.add(:authselect_profile) do
   retval = nil
 
   setcode do
-    if Facter::Util::Resolution.which('authselect')
+    if Facter::Core::Execution.which('authselect')
       begin
-        cmd_out = Facter::Util::Resolution.exec('authselect current')
+        cmd_out = Facter::Core::Execution.execute('authselect current')
         retval = YAML.safe_load(cmd_out)['Profile ID']
       rescue StandardError
         nil
