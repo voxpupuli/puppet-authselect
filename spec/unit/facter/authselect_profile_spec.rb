@@ -31,8 +31,8 @@ describe :authselect_profile, type: :fact do
 
   context 'without authselect' do
     before do
-      expect(Facter::Util::Resolution).to receive(:which).with('authselect').and_return(nil)
-      expect(Facter::Util::Resolution).not_to receive(:exec).with('authselect current')
+      expect(Facter::Core::Execution).to receive(:which).with('authselect').and_return(nil)
+      expect(Facter::Core::Execution).not_to receive(:execute).with('authselect current')
     end
 
     it { expect(fact.value).to eq(nil) }
@@ -40,8 +40,8 @@ describe :authselect_profile, type: :fact do
 
   context 'with authselect, but no profile' do
     before do
-      expect(Facter::Util::Resolution).to receive(:which).with('authselect').and_return('authselect')
-      expect(Facter::Util::Resolution).to receive(:exec).with('authselect current').and_return('No existing configuration detected.')
+      expect(Facter::Core::Execution).to receive(:which).with('authselect').and_return('authselect')
+      expect(Facter::Core::Execution).to receive(:execute).with('authselect current').and_return('No existing configuration detected.')
     end
 
     it { expect(fact.value).to eq(nil) }
@@ -49,8 +49,8 @@ describe :authselect_profile, type: :fact do
 
   context 'with authselect, but profile but no features' do
     before do
-      expect(Facter::Util::Resolution).to receive(:which).with('authselect').and_return('authselect')
-      expect(Facter::Util::Resolution).to receive(:exec).with('authselect current').and_return(profile)
+      expect(Facter::Core::Execution).to receive(:which).with('authselect').and_return('authselect')
+      expect(Facter::Core::Execution).to receive(:execute).with('authselect current').and_return(profile)
     end
 
     it { expect(fact.value).to eq('sssd') }
@@ -58,8 +58,8 @@ describe :authselect_profile, type: :fact do
 
   context 'with authselect, but profile with features' do
     before do
-      expect(Facter::Util::Resolution).to receive(:which).with('authselect').and_return('authselect')
-      expect(Facter::Util::Resolution).to receive(:exec).with('authselect current').and_return(profile_with_features)
+      expect(Facter::Core::Execution).to receive(:which).with('authselect').and_return('authselect')
+      expect(Facter::Core::Execution).to receive(:execute).with('authselect current').and_return(profile_with_features)
     end
 
     it { expect(fact.value).to eq('sssd') }
