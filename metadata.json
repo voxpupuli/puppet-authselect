@@ -1,12 +1,12 @@
 {
-  "name": "jcpunk-authselect",
-  "version": "1.1.2",
-  "author": "Pat Riehecky",
+  "name": "puppet-authselect",
+  "version": "2.0.0",
+  "author": "Vox Pupuli",
   "summary": "Manage authconfig active profile",
   "license": "Apache-2.0",
-  "source": "https://github.com/jcpunk/puppet-authselect",
-  "project_page": "https://github.com/jcpunk/puppet-authselect",
-  "issues_url": "https://github.com/jcpunk/puppet-authselect/issues",
+  "source": "https://github.com/voxpupuli/puppet-authselect",
+  "project_page": "https://github.com/voxpupuli/puppet-authselect",
+  "issues_url": "https://github.com/voxpupuli/puppet-authselect/issues",
   "dependencies": [],
   "operatingsystem_support": [
     {
