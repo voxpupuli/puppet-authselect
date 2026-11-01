@@ -7,7 +7,12 @@
   "source": "https://github.com/voxpupuli/puppet-authselect",
   "project_page": "https://github.com/voxpupuli/puppet-authselect",
   "issues_url": "https://github.com/voxpupuli/puppet-authselect/issues",
-  "dependencies": [],
+  "dependencies": [
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 9.0.0 < 11.0.0"
+    }
+  ],
   "operatingsystem_support": [
     {
       "operatingsystem": "CentOS",

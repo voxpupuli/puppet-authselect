@@ -135,7 +135,7 @@ Configure authselect
 
 #### Examples
 
-##### 
+#####
 
 ```puppet
 include authselect::config
@@ -147,7 +147,7 @@ Manage the authselect package(s)
 
 #### Examples
 
-##### 
+#####
 
 ```puppet
 include authselect::package
@@ -161,7 +161,7 @@ Manage a custom authselect profile
 
 #### Examples
 
-##### 
+#####
 
 ```puppet
 authselect::custom_profile { 'namevar': }
@@ -243,7 +243,7 @@ Manage file contents in a custom authselect profile
 
 #### Examples
 
-##### 
+#####
 
 ```puppet
 authselect::custom_profile_content { 'myprofile/filename':
@@ -314,4 +314,3 @@ Data type: `Stdlib::Filemode`
 The file resource `mode` attribute
 
 Default value: `'0644'`
-
