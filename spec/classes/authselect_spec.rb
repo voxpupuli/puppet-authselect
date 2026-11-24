@@ -153,7 +153,7 @@ describe 'authselect' do
         it { is_expected.to contain_package('authselect').with_ensure('present') }
 
         it {
-          is_expected.to contain_exec('authselect set profile=custom/testing features=[]').with({ command: 'authselect select custom/testing  --force' })
+          is_expected.to contain_exec('authselect set profile=custom/testing features=[]').with({ command: ['authselect', 'select', '--force', '--', 'custom/testing'] })
         }
 
         it {

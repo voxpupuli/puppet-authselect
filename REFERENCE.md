@@ -189,9 +189,18 @@ Default value: `{}`
 
 ##### <a name="-authselect--custom_profile--base_profile"></a>`base_profile`
 
-Data type: `Enum['sssd','winbind', 'nis', 'minimal']`
+Data type:
 
-the profile to base your custom profile off of, defaults to sssd
+```puppet
+Pattern[
+    /\A[^\/\s]+\z/,
+    /\A(custom|vendor)\/[^\/\s]+\z/
+  ]
+```
+
+The ID of the profile to base your custom profile on, as shown by `authselect list`.
+The profiles available differ between OS releases (for example `minimal` on EL9, `local` on EL10).
+Prefix the ID with `custom/` or `vendor/` to base it on a custom or vendor profile.
 
 Default value: `'sssd'`
 
