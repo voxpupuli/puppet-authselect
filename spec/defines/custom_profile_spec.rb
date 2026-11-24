@@ -107,7 +107,7 @@ describe 'authselect::custom_profile' do
         }
       end
 
-      ['local', 'minimal', 'custom/other-profile', 'vendor/other-profile'].each do |base_profile|
+      ['local', 'minimal', 'custom/other-profile', 'vendor_profile.v2'].each do |base_profile|
         context "with base_profile #{base_profile}" do
           let(:params) do
             {
@@ -128,7 +128,10 @@ describe 'authselect::custom_profile' do
         end
       end
 
-      ['', 'my profile', 'other/profile', 'custom/', 'custom/a/b', "sssd\n", "my profile\nsssd"].each do |base_profile|
+      [
+        '', 'my profile', 'other/profile', 'vendor/other-profile', 'custom/', 'custom/a/b', "sssd\n", "my profile\nsssd",
+        '--vendor', '.', '..', 'custom/..', 'sssd;reboot', '$(reboot)',
+      ].each do |base_profile|
         context "with invalid base_profile #{base_profile.inspect}" do
           let(:params) do
             {
@@ -158,24 +161,6 @@ describe 'authselect::custom_profile' do
             {
               command: ['authselect', 'create-profile', '-b', 'sssd', '--vendor', '--symlink-meta', '--symlink-nsswitch', '--symlink-pam', '--symlink-dconf', '--', 'test-profile'],
               creates: '/usr/share/authselect/vendor/test-profile',
-            },
-          )
-        }
-      end
-
-      context 'with shell syntax in base_profile' do
-        let(:params) do
-          {
-            'base_profile' => 'sssd;reboot',
-          }
-        end
-
-        it { is_expected.to compile }
-
-        it {
-          is_expected.to contain_exec('authselect create-profile -b sssd;reboot test-profile').with(
-            {
-              command: ['authselect', 'create-profile', '-b', 'sssd;reboot', '--', 'test-profile'],
             },
           )
         }

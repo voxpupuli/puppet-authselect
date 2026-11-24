@@ -8,10 +8,9 @@ class authselect::config {
   $requested_features = $authselect::profile_options.sort
   $requested_features_string = $requested_features.join(' ')
 
-  # The command is an array so that it is run without a shell. Nothing in the
-  # profile or its features can then be interpreted as shell syntax, and the
-  # '--' stops them from being read as options.
-  $select_command = ['authselect', 'select', '--force', '--', $authselect::profile] + $requested_features_string.strip.split(/\s+/)
+  # The command is an array so that it is run without a shell, and the '--'
+  # stops the profile and its features from being read as options.
+  $select_command = ['authselect', 'select', '--force', '--', $authselect::profile] + $requested_features.filter |$feature| { !$feature.empty }
 
   # This resource is just used for folks that need deterministic
   # ordering after the package is installed but before authselect is run

@@ -189,18 +189,12 @@ Default value: `{}`
 
 ##### <a name="-authselect--custom_profile--base_profile"></a>`base_profile`
 
-Data type:
-
-```puppet
-Pattern[
-    /\A[^\/\s]+\z/,
-    /\A(custom|vendor)\/[^\/\s]+\z/
-  ]
-```
+Data type: `Pattern[/\A(custom\/)?[A-Za-z0-9_][A-Za-z0-9._-]*\z/]`
 
 The ID of the profile to base your custom profile on, as shown by `authselect list`.
 The profiles available differ between OS releases (for example `minimal` on EL9, `local` on EL10).
-Prefix the ID with `custom/` or `vendor/` to base it on a custom or vendor profile.
+Prefix the ID with `custom/` to base it on another custom profile. A vendor profile is given by its
+plain name.
 
 Default value: `'sssd'`
 
