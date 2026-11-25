@@ -13,6 +13,7 @@
 # @param profile
 #   Which authselect profile should be used.
 #   Note: If using a custom (non-vendor) profile you must prefix the name with 'custom/'
+#   Defaults to `minimal`, or `local` on EL10 where `minimal` no longer exists.
 # @example Specifying a custom profile
 #   authselect::profile: 'custom/custom_profile_name'
 # @example Specifying a vendor profile
