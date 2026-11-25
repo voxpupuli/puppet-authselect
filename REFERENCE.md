@@ -109,6 +109,7 @@ Data type: `String[1]`
 
 Which authselect profile should be used.
 Note: If using a custom (non-vendor) profile you must prefix the name with 'custom/'
+Defaults to `minimal` (EL8/9) or `local` (EL10), the stock profile for local users only.
 
 Default value: `'minimal'`
 
@@ -189,9 +190,12 @@ Default value: `{}`
 
 ##### <a name="-authselect--custom_profile--base_profile"></a>`base_profile`
 
-Data type: `Enum['sssd','winbind', 'nis', 'minimal']`
+Data type: `Pattern[/\A(custom\/)?[A-Za-z0-9_][A-Za-z0-9._-]*\z/]`
 
-the profile to base your custom profile off of, defaults to sssd
+The ID of the profile to base your custom profile on, as shown by `authselect list`.
+The profiles available differ between OS releases (for example `minimal` on EL9, `local` on EL10).
+Prefix the ID with `custom/` to base it on another custom profile. A vendor profile is given by its
+plain name.
 
 Default value: `'sssd'`
 

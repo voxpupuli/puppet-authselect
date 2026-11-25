@@ -107,6 +107,65 @@ describe 'authselect::custom_profile' do
         }
       end
 
+      ['local', 'minimal', 'custom/other-profile', 'vendor_profile.v2'].each do |base_profile|
+        context "with base_profile #{base_profile}" do
+          let(:params) do
+            {
+              'base_profile' => base_profile,
+            }
+          end
+
+          it { is_expected.to compile }
+
+          it {
+            is_expected.to contain_exec("authselect create-profile -b #{base_profile} test-profile").with(
+              {
+                command: ['authselect', 'create-profile', '-b', base_profile, '--', 'test-profile'],
+                creates: '/etc/authselect/custom/test-profile',
+              },
+            )
+          }
+        end
+      end
+
+      [
+        '', 'my profile', 'other/profile', 'vendor/other-profile', 'custom/', 'custom/a/b', "sssd\n", "my profile\nsssd",
+        '--vendor', '.', '..', 'custom/..', 'sssd;reboot', '$(reboot)',
+      ].each do |base_profile|
+        context "with invalid base_profile #{base_profile.inspect}" do
+          let(:params) do
+            {
+              'base_profile' => base_profile,
+            }
+          end
+
+          it { is_expected.to compile.and_raise_error(%r{parameter 'base_profile' expects}) }
+        end
+      end
+
+      context 'with all options' do
+        let(:params) do
+          {
+            'vendor'           => true,
+            'symlink_meta'     => true,
+            'symlink_nsswitch' => true,
+            'symlink_pam'      => true,
+            'symlink_dconf'    => true,
+          }
+        end
+
+        it { is_expected.to compile }
+
+        it {
+          is_expected.to contain_exec('authselect create-profile -b sssd test-profile --vendor --symlink-meta --symlink-nsswitch --symlink-pam --symlink-dconf').with(
+            {
+              command: ['authselect', 'create-profile', '-b', 'sssd', '--vendor', '--symlink-meta', '--symlink-nsswitch', '--symlink-pam', '--symlink-dconf', '--', 'test-profile'],
+              creates: '/usr/share/authselect/vendor/test-profile',
+            },
+          )
+        }
+      end
+
       context 'with custom contents and no vendor' do
         let(:params) do
           {

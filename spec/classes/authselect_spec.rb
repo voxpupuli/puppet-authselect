@@ -7,15 +7,17 @@ describe 'authselect' do
     context "on #{os}" do
       let(:facts) { os_facts }
 
+      let(:default_profile) { (os_facts[:os]['release']['major'].to_i >= 10) ? 'local' : 'minimal' }
+
       context 'when using defaults' do
         it { is_expected.to compile }
 
-        if os_facts[:os]['family'] == 'RedHat' && os_facts[:os]['release']['major'] > '7'
+        if os_facts[:os]['family'] == 'RedHat' && os_facts[:os]['release']['major'].to_i > 7
           it { is_expected.to have_package_resource_count(1) }
           # Need to figure out how to mock up authselect check before this works
           # it { is_expected.to have_exec_resource_count(1) }
           it { is_expected.to contain_package('authselect').with_ensure('present') }
-          it { is_expected.to contain_exec('authselect set profile=minimal features=[]') }
+          it { is_expected.to contain_exec("authselect set profile=#{default_profile} features=[]") }
         else
           it { is_expected.to have_package_resource_count(0) }
           it { is_expected.to have_exec_resource_count(0) }
@@ -47,7 +49,7 @@ describe 'authselect' do
         it { is_expected.to have_package_resource_count(0) }
         # Need to figure out how to mock up authselect check before this works
         # it { is_expected.to have_exec_resource_count(1) }
-        it { is_expected.to contain_exec('authselect set profile=minimal features=[]') }
+        it { is_expected.to contain_exec("authselect set profile=#{default_profile} features=[]") }
       end
 
       context 'yes package=latest, yes profile' do
@@ -64,7 +66,7 @@ describe 'authselect' do
         it { is_expected.to contain_package('name1').with_ensure('latest') }
         it { is_expected.to contain_package('name2').with_ensure('latest') }
         it { is_expected.to have_package_resource_count(2) }
-        it { is_expected.to contain_exec('authselect set profile=minimal features=[]') }
+        it { is_expected.to contain_exec("authselect set profile=#{default_profile} features=[]") }
       end
 
       context 'yes package=absent, yes profile' do
@@ -153,7 +155,7 @@ describe 'authselect' do
         it { is_expected.to contain_package('authselect').with_ensure('present') }
 
         it {
-          is_expected.to contain_exec('authselect set profile=custom/testing features=[]').with({ command: 'authselect select custom/testing  --force' })
+          is_expected.to contain_exec('authselect set profile=custom/testing features=[]').with({ command: ['authselect', 'select', '--force', '--', 'custom/testing'] })
         }
 
         it {
