@@ -109,7 +109,7 @@ Data type: `String[1]`
 
 Which authselect profile should be used.
 Note: If using a custom (non-vendor) profile you must prefix the name with 'custom/'
-Defaults to `minimal`, or `local` on EL10 where `minimal` no longer exists.
+Defaults to `minimal` (EL8/9) or `local` (EL10), the stock profile for local users only.
 
 Default value: `'minimal'`
 
